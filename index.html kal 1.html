@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator - SMKN 5 Bone</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .intro {
+  text-align: center;
+  margin-top: 20px; /* Tambahan ini yang membuat teks turun */
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 2s ease-in-out;
+}
+
+    .intro h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #2d3436;
+    }
+
+    .intro p {
+      font-size: 18px;
+      color: #636e72;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .calculator {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 300px;
+      animation: fadeIn 2s ease-in-out 0.5s backwards;
+    }
+
+    .display {
+      height: 60px;
+      background-color: #f4f4f4;
+      border-radius: 10px;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #e0e0e0;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #d3d3d3;
+    }
+
+    .operator {
+      background-color: #ff9f43;
+      color: white;
+    }
+
+    .operator:hover {
+      background-color: #ff7f0f;
+    }
+
+    .equal {
+      background-color: #00b894;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .equal:hover {
+      background-color: #00997d;
+    }
+
+    .clear {
+      background-color: #d63031;
+      color: white;
+    }
+
+    .clear:hover {
+      background-color: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro">
+    <h1>SELAMAT DATANG DI SMKN 5 BONE</h1>
+    <p>Perkenalkan Nama Saya Avika Zahra Dari SMKN 5 Bone, Jurusan Teknik Komputer dan Jaringan. Saya Ingin Mempersembahkan Sebuah Project Sederhana adalah "Kalkulator Digital". Semoga Bermanfaat dan Menginspirasi!</p>
+  </div>
+
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button onclick="appendValue('(')">(</button>
+      <button onclick="appendValue(')')">)</button>
+      <button class="operator" onclick="appendValue('/')">÷</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button class="operator" onclick="appendValue('*')">×</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button class="operator" onclick="appendValue('-')">−</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button class="operator" onclick="appendValue('+')">+</button>
+
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+
+    function appendValue(value) {
+      if (display.textContent === '0') {
+        display.textContent = value;
+      } else {
+        display.textContent += value;
+      }
+    }
+
+    function clearDisplay() {
+      display.textContent = '0';
+    }
+
+    function calculate() {
+      try {
+        display.textContent = eval(display.textContent.replace(/÷/g, '/').replace(/×/g, '*'));
+      } catch {
+        display.textContent = 'Error';
+      }
+    }
+  </script>
+
+</body>
+</html>
